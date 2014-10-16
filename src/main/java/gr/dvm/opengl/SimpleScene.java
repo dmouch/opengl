@@ -7,6 +7,8 @@ import javax.media.opengl.*;
 import javax.media.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.*;
 
+import gr.dvm.opengl.util.LogGL;
+
 public class SimpleScene implements GLEventListener {
 
     private double theta = 0;
@@ -17,6 +19,8 @@ public class SimpleScene implements GLEventListener {
         GLProfile glp       = GLProfile.getDefault();
         GLCapabilities caps = new GLCapabilities(glp);
         GLCanvas canvas     = new GLCanvas(caps);
+
+        LogGL.logProfile(glp);
 
         Frame frame = new Frame("AWT Window Test");
         frame.setSize(300, 300);
