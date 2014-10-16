@@ -22,6 +22,7 @@ public class SimpleScene implements GLEventListener {
 
         LogGL.logProfile(glp);
 
+
         Frame frame = new Frame("AWT Window Test");
         frame.setSize(300, 300);
         frame.add(canvas);
@@ -52,6 +53,7 @@ public class SimpleScene implements GLEventListener {
 
     @Override
     public void init(GLAutoDrawable drawable) {
+        LogGL.logVendor(drawable);
     }
 
     @Override 
