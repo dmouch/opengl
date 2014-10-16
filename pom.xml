@@ -45,7 +45,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>gr.dvm.opengl.SimpleScene</mainClass>
+                            <mainClass>gr.dvm.opengl.SimpleSceneShaders</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

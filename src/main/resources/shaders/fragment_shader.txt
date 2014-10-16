@@ -1,0 +1,8 @@
+uniform sampler2D fish_y_offset;
+uniform float alphavalue;
+void main()
+{
+        gl_FragColor = texture2D(fish_y_offset, gl_TexCoord[0].st);
+            gl_FragColor.a=alphavalue;
+
+}
