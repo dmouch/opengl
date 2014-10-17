@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.nio.IntBuffer;
 import java.nio.ByteBuffer;
 
-import javax.media.opengl.GL4;
+import javax.media.opengl.GL2;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +24,7 @@ public class ShaderControl {
     public String[] vsrc;
     public String[] fsrc;
 
-    public void init(GL4 gl) {
+    public void init(GL2 gl) {
         try {
             attachShaders(gl);
         } catch (Exception e) {
@@ -52,9 +52,9 @@ public class ShaderControl {
         return new String[] { sb.toString() };
     }
 
-    private void attachShaders(GL4 gl) throws Exception {
-        vertexShaderProgram = gl.glCreateShader(GL4.GL_VERTEX_SHADER);
-        fragmentShaderProgram = gl.glCreateShader(GL4.GL_FRAGMENT_SHADER);
+    private void attachShaders(GL2 gl) throws Exception {
+        vertexShaderProgram = gl.glCreateShader(GL2.GL_VERTEX_SHADER);
+        fragmentShaderProgram = gl.glCreateShader(GL2.GL_FRAGMENT_SHADER);
         gl.glShaderSource(vertexShaderProgram, 1, vsrc, null, 0);
         gl.glCompileShader(vertexShaderProgram);
         gl.glShaderSource(fragmentShaderProgram, 1, fsrc, null, 0);
@@ -66,10 +66,10 @@ public class ShaderControl {
         gl.glLinkProgram(shaderprogram);
         gl.glValidateProgram(shaderprogram);
         IntBuffer intBuffer = IntBuffer.allocate(1);
-        gl.glGetProgramiv(shaderprogram, GL4.GL_LINK_STATUS, intBuffer);
+        gl.glGetProgramiv(shaderprogram, GL2.GL_LINK_STATUS, intBuffer);
 
         if (intBuffer.get(0) != 1) {
-            gl.glGetProgramiv(shaderprogram, GL4.GL_INFO_LOG_LENGTH, intBuffer);
+            gl.glGetProgramiv(shaderprogram, GL2.GL_INFO_LOG_LENGTH, intBuffer);
             int size = intBuffer.get(0);
             LOG.error("Program link error: ");
             if (size > 0) {
@@ -84,12 +84,12 @@ public class ShaderControl {
         }
     }
 
-    public int useShader(GL4 gl) {
+    public int useShader(GL2 gl) {
         gl.glUseProgram(shaderprogram);
         return shaderprogram;
     }
 
-    public void dontUseShader(GL4 gl) {
+    public void dontUseShader(GL2 gl) {
         gl.glUseProgram(0);
     }
 }

@@ -3,7 +3,7 @@ package gr.dvm.opengl.util;
 import javax.media.opengl.GLProfile;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
-import javax.media.opengl.GL4;
+import javax.media.opengl.GL2;
 import javax.media.nativewindow.AbstractGraphicsDevice;
 
 import org.apache.logging.log4j.Logger;
@@ -27,7 +27,7 @@ public class LogGL {
     }
 
     public static void logVendor(GLAutoDrawable drawable) {
-        GL4 gl = drawable.getGL().getGL4();
+        GL2 gl = drawable.getGL().getGL2();
 
         LOG.info("Chosen GLCaps:    " + drawable.getChosenGLCapabilities());
         LOG.info("INIT GL IS:       " + gl.getClass().getName());

@@ -24,11 +24,12 @@ public class SimpleSceneShaders implements GLEventListener {
 
     public static void main(String[] args) {
         LOG.info("Shader Main");
-        GLProfile glp       = GLProfile.get(GLProfile.GL4);
+        GLProfile glp       = GLProfile.get(GLProfile.GL2);
         GLCapabilities caps = new GLCapabilities(glp);
         GLCanvas canvas     = new GLCanvas(caps);
 
         LOG.info("Is GL4 Capable? " + glp.isGL4());
+        LOG.info("Is GL3 Capable? " + glp.isGL3());
         LogGL.logProfile(glp);
 
 
@@ -64,7 +65,7 @@ public class SimpleSceneShaders implements GLEventListener {
     public void init(GLAutoDrawable drawable) {
         LOG.info("Running Shader Class");
         LogGL.logVendor(drawable);
-        GL4 gl = drawable.getGL().getGL4();
+        GL2 gl = drawable.getGL().getGL2();
         shader = new ShaderControl();
         shader.fsrc = shader.loadShader("/shaders/fragment_shader.txt");
         shader.vsrc = shader.loadShader("/shaders/vertex_shader.txt");
@@ -84,11 +85,11 @@ public class SimpleSceneShaders implements GLEventListener {
     private void render(GLAutoDrawable drawable) {
 
         GL2 gl = drawable.getGL().getGL2();
-        GL4 gl4 = drawable.getGL().getGL4();
+        //GL3 gl3 = drawable.getGL().getGL3();
 
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
 
-        shader.useShader(gl4);
+        shader.useShader(gl);
 
         gl.glBegin(GL.GL_TRIANGLES);
         gl.glColor3f(1, 0, 0);
@@ -98,7 +99,7 @@ public class SimpleSceneShaders implements GLEventListener {
         gl.glColor3f(0, 0, 1);
         gl.glVertex2d(s, -s);
 
-        shader.dontUseShader(gl4);
+        shader.dontUseShader(gl);
 
         gl.glEnd();
     }
